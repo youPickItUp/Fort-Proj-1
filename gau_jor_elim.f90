@@ -32,7 +32,7 @@ contains
 
                 a_size = size(results)
                 success = .TRUE.
-
+               
                 allocate(row_tmp(a_size)) !in case I need to use swap_rows
 
                 outter: do j=1, a_size !loop over columns
@@ -56,21 +56,36 @@ contains
 
                         !starts real elimination
                         
+                        !do i=1, a_size
+                        !        write(*,*) coefficients(:, i)
+                        !end do
+ 
+
                         !loop over rows - creates diagonal matrix
-                        do i=1, a_size
+                        do i=1, j-1
                                 quotient = coefficients(j, i) / coefficients(j, j)
                                 coefficients(j:, i) = coefficients(j:, i) - coefficients(j:, j) * quotient
+                                results(i) = results(i) - results(j) * quotient
                         end do
-                        results(i) = results(i) - results(j) * quotient
+
+                        do i=j+1, a_size
+                                quotient = coefficients(j, i) / coefficients(j, j)
+                                coefficients(j:, i) = coefficients(j:, i) - coefficients(j:, j) * quotient
+                                results(i) = results(i) - results(j) * quotient
+                        end do
+                        !write(*,*) "quotient"
+                        !write(*,*) quotient
 
                 end do outter
 
                 !calculate final results - ones on diagonal
                 if(success) then
+                        !write(*,*) results
                         do i=1, a_size
                                 results(i) = results(i) / coefficients(i, i)
                                 coefficients(i, i) = 1
                         end do
+                        !write(*,*) results
                 end if
 
                 deallocate(row_tmp)

@@ -1,3 +1,5 @@
 *.mod
 experiments.f90
 [^.]+
+*.out
+*.swp
