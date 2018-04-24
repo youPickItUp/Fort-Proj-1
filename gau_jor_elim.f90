@@ -1,5 +1,3 @@
-!swap_row using swap?
-
 module gau_jor_elim
 implicit none
         private swap_rows, swap
