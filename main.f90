@@ -34,9 +34,6 @@ implicit none
                 
                 call generate_coef(coefficients_k4, division_n)
                 
-                write(*,*) coefficients_k4
-                write(*,*) "-------------------------------------------"
-
                 results_k4 = 0
                 if(division_n - 1 .GT. 0) then
                         results_k4(division_n - 1) = -division_n ** 2
@@ -45,16 +42,15 @@ implicit none
                 call solve_equation(coefficients_k4, results_k4, success)
 
                 if(success) then
-                        write(*,*) "Success"
-                        write(*,*) results_k4
+                        write(*, 10) 0.0d0, results_k4, 1.0d0
+                        
+                        10 format(f11.9)
                 else
                         write(*,*) "Failure"
                 end if
                 
                 deallocate(coefficients_k4)
                 deallocate(results_k4)
-
-                write(*,*) "flag1"
 
         else if(kind_p .EQ. 2) then
 
@@ -77,12 +73,12 @@ implicit none
                 call solve_equation(coefficients_k8, results_k8, success)
 
                 if(success) then
-                        write(*,*) "Success"
-                        write(*,*) results_k8
+                        write(*, 20) 0.0d0, results_k8, 1.0d0
+
+                        20 format(f19.17)
                 else
                         write(*,*) "Failure"
                 end if
-                write(*,*) "flag2"
 
                 deallocate(coefficients_k8)
                 deallocate(results_k8)
@@ -108,13 +104,13 @@ implicit none
                 call solve_equation(coefficients_k16, results_k16, success)
 
                 if(success) then
-                        write(*,*) "Success"
-                        write(*,*) results_k16
+                        write(*, 30) 0.0d0, results_k16, 1.0d0
+
+                        30 format(f38.36)
                 else
                         write(*,*) "Failure"
                 end if
 
-                write(*,*) "flag3"
                 deallocate(coefficients_k16)
                 deallocate(results_k16)
 
