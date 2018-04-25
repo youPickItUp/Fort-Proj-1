@@ -3,3 +3,4 @@ experiments.f90
 [^.]+
 *.out
 *.swp
+*.txt
