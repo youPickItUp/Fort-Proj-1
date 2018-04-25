@@ -33,8 +33,14 @@ implicit none
                 end if
                 
                 call generate_coef(coefficients_k4, division_n)
+                
+                write(*,*) coefficients_k4
+                write(*,*) "-------------------------------------------"
 
                 results_k4 = 0
+                if(division_n - 1 .GT. 0) then
+                        results_k4(division_n - 1) = -division_n ** 2
+                end if
 
                 call solve_equation(coefficients_k4, results_k4, success)
 
@@ -47,6 +53,8 @@ implicit none
                 
                 deallocate(coefficients_k4)
                 deallocate(results_k4)
+
+                write(*,*) "flag1"
 
         else if(kind_p .EQ. 2) then
 
@@ -62,6 +70,9 @@ implicit none
                 call generate_coef(coefficients_k8, division_n)
 
                 results_k8 = 0
+                if(division_n - 1 .GT. 0) then
+                        results_k8(division_n - 1) = -division_n ** 2
+                end if
 
                 call solve_equation(coefficients_k8, results_k8, success)
 
@@ -71,6 +82,7 @@ implicit none
                 else
                         write(*,*) "Failure"
                 end if
+                write(*,*) "flag2"
 
                 deallocate(coefficients_k8)
                 deallocate(results_k8)
@@ -88,7 +100,10 @@ implicit none
                 
                 call generate_coef(coefficients_k16, division_n)
 
-                results_k8 = 0
+                results_k16 = 0
+                if(division_n - 1 .GT. 0) then
+                        results_k16(division_n - 1) = -division_n ** 2
+                end if
 
                 call solve_equation(coefficients_k16, results_k16, success)
 
@@ -99,6 +114,7 @@ implicit none
                         write(*,*) "Failure"
                 end if
 
+                write(*,*) "flag3"
                 deallocate(coefficients_k16)
                 deallocate(results_k16)
 
