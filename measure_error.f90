@@ -19,7 +19,7 @@ contains
                 average_err = 0.0d0
                 
                 do i=1, size(results)
-                    average_err = average_err + results(i) - dble(i) / (size(results) + 1)
+                    average_err = average_err + abs(results(i) - real(i, 16) / real((size(results) + 1), 16))
                 end do
 
                 average_err = average_err / (size(results) + 1)
@@ -34,7 +34,7 @@ contains
                 average_err = 0.0d0
 
                 do i=1, size(results)
-                    average_err = average_err + results(i) - dble(i) / (size(results) + 1)
+                    average_err = average_err + abs(results(i) - real(i, 16) / real((size(results) + 1), 16))
                 end do
 
                 average_err = average_err / (size(results) + 1)
@@ -49,7 +49,7 @@ contains
                 average_err = 0.0d0
 
                 do i=1, size(results)
-                    average_err = average_err + results(i) - dble(i) / (size(results) + 1)
+                    average_err = average_err + abs(results(i) - real(i, 16) / real((size(results) + 1), 16))
                 end do
 
                 average_err = average_err / (size(results) + 1)
