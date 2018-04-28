@@ -14,3 +14,7 @@ avg_errs: main.f90
 .PHONY: clean
 clean:
 	rm -f *.mod avg_errs
+
+.PHONY: example
+example:
+	./avg_errs 100 10
