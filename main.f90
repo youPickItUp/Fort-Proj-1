@@ -48,7 +48,7 @@ implicit none
         read(value, *) step_size
         
         !main loop
-        do i=1, division_n, step_size
+        do i=step_size, division_n, step_size
             
             write(*,*) "Division number: ", i
             write(*,*)
