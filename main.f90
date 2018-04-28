@@ -6,6 +6,13 @@ use measure_error, only: measure_err
 
 implicit none
 
+!        integer:: args_count,first_argument,lenght,status
+!        character(10):: value
+!        args_count = command_argument_count()
+!        call get_command_argument(1,value,length,status)
+!        read(value,*) first_argument
+
+        !coefficients matrixes
         real (kind=4), dimension(:,:), allocatable :: coefficients_k4
         real (kind=8), dimension(:,:), allocatable :: coefficients_k8
         real (kind=16), dimension(:,:), allocatable :: coefficients_k16
@@ -14,16 +21,31 @@ implicit none
         real (kind=8), dimension(:), allocatable :: results_k8
         real (kind=16), dimension(:), allocatable :: results_k16
         
+        !finnal average error
         real (kind=16) :: average_error
 
-        integer (kind=4) :: division_n, step_size, allocate_status
-
+        !to mark error of allocation
+        integer (kind=4) :: allocate_status
+        
+        !indicates success or error in solving equation subroutine
         logical :: success
 
-        integer (kind=4) :: i, j
+        !needed for main loop in program
+        integer (kind=4) :: i
         
-        read(*,*) division_n, step_size
+        !program parameters or needed to get them 
+        integer (kind=4) :: division_n, step_size, args_count, length, status
+        character(10) :: value
         
+        !getting parameters "in place" or throwing error
+        args_count = command_argument_count()
+        if(args_count .NE. 2) stop "Wrong args num. Should be max_div & step."
+        
+        call get_command_argument(1, value, length, status)
+        read(value, *) division_n
+        
+        call get_command_argument(2, value, length, status)
+        read(value, *) step_size
         
         !main loop
         do i=1, division_n, step_size
@@ -61,7 +83,7 @@ implicit none
             !if managed to solve write
             if(success) then
                 call measure_err(results_k4, average_error)
-                write(*,*) "Kind 4: ", average_error
+                write(*,*) "Kind 4:  ", average_error
             else
                 write(*,*) "Failure"
             end if
@@ -104,7 +126,7 @@ implicit none
             !if managed to solve write
             if(success) then
                 call measure_err(results_k8, average_error)
-                write(*,*) "Kind 8: ", average_error
+                write(*,*) "Kind 8:  ", average_error
             else
                 write(*,*) "Failure"
             end if
@@ -148,7 +170,7 @@ implicit none
             if(success) then
                 call measure_err(results_k16, average_error)
                 write(*,*) "Kind 16: ", average_error
-            else
+                else
                 write(*,*) "Failure"
             end if
             

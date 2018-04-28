@@ -1,6 +1,9 @@
 module coefficients_gen
 implicit none
 
+public  generate_coef
+private
+
         interface generate_coef
 
                 module procedure generate_coef4

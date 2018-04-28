@@ -1,5 +1,5 @@
-FF=gfortran
-FFLAGS=
+FF= gfortran 
+FFLAGS= -ffree-form -std=f2008 -fimplicit-none -Wall -pedantic
 
 .PHONY: all
 all:

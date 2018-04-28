@@ -1,6 +1,9 @@
 module measure_error
 implicit none
 
+public  measure_err
+private
+
         interface measure_err
 
                 module procedure measure_err_k4

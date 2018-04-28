@@ -1,6 +1,8 @@
 module gau_jor_elim
 implicit none
-        private swap_rows, swap
+
+public  solve_equation
+private
         
         interface swap
 
@@ -24,7 +26,7 @@ implicit none
 
                 module procedure solve_equation_kind4
                 module procedure solve_equation_kind8
-                module procedure solve_equation_kind16	
+                module procedure solve_equation_kind16
 
         end interface solve_equation
 		
