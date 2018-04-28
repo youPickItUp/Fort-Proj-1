@@ -1,4 +1,4 @@
-# Fort-Proj-1
+# Fortran Projekt 1
 
 Użyłem kompilatora gfortran.
 
